@@ -1,18 +1,40 @@
 '''
- 10.7 print(hydrogen)을 호출한다. Element 클래스의 정의에서 dump 메서드를
- __str__() 메서드로 바꿔서 새로운 hydrogen 객체를 생성하고,
- 그리고 print(hydrogen)을 다시 호출한다.
+ 10.8 Element 클래스를 수정해서 name, symbol, number의 속성을
+ private로 만든다. 각 속성값을 반환하기 위해 getter 프로퍼티를 정의한다.
 '''
 
 class Element():
     def __init__(self, name, symbol, number):
-        self.name = name
-        self.symbol = symbol
-        self.number = number
-    def __str__(self):
-        return f'{self.name} {self.symbol} {self.number}'
+        self.hidden_name = name
+        self.hidden_symbol = symbol
+        self.hidden_number = number
+    @property
+    def name(self):
+        print('inside the getter')
+        return self.hidden_name
+    @name.setter
+    def name(self, name):
+        print('inside the setter')
+        self.hidden_name = name
+    @property
+    def symbol(self):
+        print('inside the getter')
+        return self.hidden_symbol
+    @symbol.setter
+    def symbol(self, symbol):
+        print('inside the setter')
+        self.hidden_symbol = symbol
+    @property
+    def number(self):
+        print('inside the getter')
+        return self.hidden_number
+    @number.setter
+    def symbol(self, number):
+        print('inside the setter')
+        self.hidden_number = number
 
-el_dict = {'name': 'Hydrogen', 'symbol': 'H', 'number': 1}
-hydrogen = Element(el_dict['name'], el_dict['symbol'], el_dict['number'])
 
-print(hydrogen)
+produce = Element('Hydrogen', 'H', 1)
+produce.name
+produce.symbol
+produce.number
